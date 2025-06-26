@@ -11,7 +11,7 @@
 <entry xml:lang='en'><title>Counting Active Bits</title>
 <published>2025-06-26T16:47:53-04:00</published>
 <updated>2025-06-26T16:47:53-04:00</updated>
-<link href='Counting_Active_Bits-June_26_2025.html' type='text/html'/>
+<link href='http://joachim.work/blog/Counting_Active_Bits-June_26_2025.html' type='text/html'/>
 <id>http://joachim.work/blog/Counting_Active_Bits-June_26_2025.html</id>
 <content type='html'>
 <p>Recently I found a delightfully simple way to efficiently count each <code>1</code> - the “active bits”- in a binary representation of an integer.</p>
