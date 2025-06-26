@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+<meta name='SSG' content='Yoink'>
+<meta name='title' content='Counting Active Bits'>
+<meta name='subtitle' content='Brian Kernighan’s Algorithm'>
+<meta name='author' content='Joachim Pfefferkorn'>
+<meta name='published' content='2025-06-26T16:47:53-04:00'>
+<meta name='updated' content='2025-06-26T16:47:53-04:00'>
+<meta name='filename' content='Counting_Active_Bits-June_26_2025.html'>
+<meta name='tags' content='math, binary'>
+<title>Counting Active Bits</title>
+<link rel='stylesheet' href='../style.css?v=1'>
+</head>
+<body>
+<div class = 'header'>
+<a href='/Users/joachimpfefferkorn/repos/joachimbbp.github.io/index.html'>home</a>
+</div>
+<div class = 'blog'>
+<h1>Counting Active Bits</h1>
+<div class = 'metadata'>
+Brian Kernighan’s Algorithm<br>
+June 26 2025<br>
+<i>math, binary</i>
+</div>
+<p>Recently I found a delightfully simple way to efficiently count each <code>1</code> - the “active bits”- in a binary representation of an integer.</p>
+
+<p>The method works by processing the bitwise AND of a number <code>n</code> and <code>n-1</code> until <code>n==0</code>. The resulting iterations are the number of active bits. That’s sort of hard to understand in English. It’s much easier to understand in Python:</p>
+
+<pre><code class="language-python">num_bits = 0
+while n != 0:
+    n &amp;= n - 1
+    num_bits += 1
+</code></pre>
+
+<p>Let’s take <code>1000</code>, or <code>1111101000</code> in binary. Subtracting <code>1</code> will give us <code>999</code>, <code>1111100111</code> in binary. The bitwise AND of these two numbers yields <code>1111100000</code>, or <code>992</code> in decimal. We continue doing this until <code>n</code> is <code>0</code>. In our case this is six iterations; the number of active bits in <code>1000</code>.</p>
+
+<p>We could add some print statements to the code (see appendix) to let you follow along at every step.</p>
+
+<pre><code class="language-bash">1000 0b1111101000
+         &amp;
+999 0b1111100111
+         =
+992 0b1111100000
+iterations:  1
+
+
+992 0b1111100000
+         &amp;
+991 0b1111011111
+         =
+960 0b1111000000
+iterations:  2
+
+
+960 0b1111000000
+         &amp;
+959 0b1110111111
+         =
+896 0b1110000000
+iterations:  3
+
+
+896 0b1110000000
+         &amp;
+895 0b1101111111
+         =
+768 0b1100000000
+iterations:  4
+
+
+768 0b1100000000
+         &amp;
+767 0b1011111111
+         =
+512 0b1000000000
+iterations:  5
+
+
+512 0b1000000000
+         &amp;
+511 0b111111111
+         =
+0 0b0
+iterations:  6
+
+
+number of bits:  6
+</code></pre>
+
+<p>As you can see, each bitwise AND of <code>n</code> and <code>n-1</code> always and only clears the least significant bit of <code>n</code>.</p>
+
+<p>I love how the time complexity scales directly with the number of active bits; the thing we are measuring. A ridiculously large number like <code>33554432</code>, would only have one iteration because the binary representation is <code>10000000000000000000000000</code>. Whereas <code>31</code> would take five times as long because it’s binary representation is <code>11111</code>. There is something really elegant about it.</p>
+
+<p>This algorithm is frequently attributed to Brian Kernighan. I came across this while working on a Zig implementation of the VDB data structure, but that’s a story for another blog post.</p>
+
+<h1>Appendix</h1>
+
+<p>Print statements added to the Python code</p>
+
+<pre><code class="language-python">n = 1000
+num_bits = 0
+while n != 0:
+    m = n-1
+    print(n, bin(n))
+    print(&quot;         &amp;&quot;)
+    print(m, bin(m))
+    print(&quot;         =&quot;)
+    n &amp;= m
+    result = n
+    num_bits += 1
+    print(result, bin(result))
+    print(&quot;iterations: &quot;, num_bits)
+    print(&quot;\n&quot;)
+print(&quot;number of bits: &quot;, num_bits)
+</code></pre>
+</div>
+</body>
+<div class = 'footer'>
+Published by <a href='/Users/joachimpfefferkorn/repos/joachimbbp.github.io/index.html'>Joachim Pfefferkorn</a> on June 26 2025<br>Questions, comments, fact-checks, concerns? Please email jbbpfefferkorn@gmail.com</div>
+</html>
