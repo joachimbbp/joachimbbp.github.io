@@ -2,15 +2,15 @@
 <feed xmlns='http://www.w3.org/2005/Atom'>
 <title>Joachim's Blog</title>
 <link href='http://joachim.work/atom.xml'/>
-<updated>2025-06-26T16:47:53-04:00</updated>
+<updated>2025-06-26T17:20:22-04:00</updated>
 <author>
 <name>Joachim Pfefferkorn</name>
 </author>
 <id>38f24759-8c27-4220-a00d-dcd1ffe53507</id>
 <!--yoink!-->
 <entry xml:lang='en'><title>Counting Active Bits</title>
-<published>2025-06-26T16:47:53-04:00</published>
-<updated>2025-06-26T16:47:53-04:00</updated>
+<published>2025-06-26T17:20:22-04:00</published>
+<updated>2025-06-26T17:20:22-04:00</updated>
 <link href='http://joachim.work/blog/Counting_Active_Bits-June_26_2025.html' type='text/html'/>
 <id>http://joachim.work/blog/Counting_Active_Bits-June_26_2025.html</id>
 <content type='html'>
